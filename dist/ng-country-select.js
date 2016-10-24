@@ -823,8 +823,15 @@
           };
           updateWithPriorityCountries = (function(_this) {
             return function() {
-              var i, len, priorityCountries, priorityCountry, ref, results;
+              var i, len, priorityArray, priorityCountries, priorityCountry, ref, results;
               priorityCountries = findCountriesIn($scope.priorities);
+              priorityArray = countryCodesIn($scope.priorities);
+              priorityCountries = priorityCountries.sort(function(a, b) {
+                if (priorityArray.indexOf(a.code) < priorityArray.indexOf(b.code)) {
+                  return -1;
+                }
+                return 1;
+              });
               if (priorityCountries.length === 0) {
                 return;
               }

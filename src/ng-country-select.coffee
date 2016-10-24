@@ -290,6 +290,10 @@ angular
 
     updateWithPriorityCountries = =>
       priorityCountries = findCountriesIn $scope.priorities
+      priorityArray = countryCodesIn $scope.priorities
+      priorityCountries = priorityCountries.sort (a,b) ->
+        return -1 if priorityArray.indexOf(a.code) < priorityArray.indexOf(b.code)
+        return 1
       return if priorityCountries.length == 0
 
       @countries.unshift separator
